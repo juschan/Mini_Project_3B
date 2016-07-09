@@ -13,8 +13,10 @@ var links = [
 ];
 
 var projects = [
-  { name: "Color Crush", link: "https://justchan.github.io/Project_1B" }, 
-  { name: "Weird Pokemon Wiki", link: "https://afternoon-savannah-34323.herokuapp.com/"} 
+  { name: "Color Crush", github_link: "https://justchan.github.io/Project_1B", 
+    heroku_link: "https://afternoon-savannah-34323.herokuapp.com/" }, 
+  { name: "Weird Pokemon Wiki", github_link: "https://justchan.github.io/Project_1B", 
+    heroku_link: "https://afternoon-savannah-34323.herokuapp.com/"} 
 ];
 
 /* GET / - default */
@@ -35,6 +37,18 @@ router.get('/links', function(req, res, next) {
 /* GET projects */
 router.get('/projects', function(req, res, next) {
   res.status(200).json( {projects} );
+});
+
+
+/* GET projects/:id */
+router.get('/projects/:id', function(req, res, next) {
+  var id=parseInt(req.params.id)
+  if(id > 0 && id <= projects.length+1) {
+    var project = projects[id - 1];
+    res.status(200).json({project});
+  } else {
+    res.status(422).json({message: "ID out of range."});
+  }
 });
 
 module.exports = router;
