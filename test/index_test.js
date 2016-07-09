@@ -20,10 +20,10 @@ describe('GET /', () => {
     it('should return a summary with name and tagline', (done) => {
         api.get('/')
         .set('Accept', 'application.json')
-        .expect(200,done)
-        .end((end, res) => {
+        .end((end, response) => {
             expect(response.body.summary).to.have.property('name');
             expect(response.body.summary).to.have.property('tagline');
+            done();
         }); //end api.end
     }); //end it
 
