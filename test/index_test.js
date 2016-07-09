@@ -51,3 +51,27 @@ describe('GET /profile', () => {
     }); //end it
 
 }); //end describe
+
+//test to get named links
+describe('GET /profile', () => {
+
+    //test to return 200 response
+    it('should return a 200 response', (done) => {
+        api.get('/links')
+        .set('Accept', 'application.json')
+        .expect(200,done);
+    }); //end it
+
+    //expect response to return a list of named links
+    it('should return an array of links, each element having fields name and link', (done) => {
+        api.get('/links')
+        .set('Accept', 'application.json')
+        .end((end, response) => {
+            expect(util.isArray(response.body.links)).to.be.true;
+            expect(response.body.links[0]).to.have.property('name');
+            expect(response.body.links[0]).to.have.property('link');
+            done();
+        }); //end api.end
+    }); //end it
+
+}); //end describe
