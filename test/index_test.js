@@ -75,3 +75,28 @@ describe('GET /profile', () => {
     }); //end it
 
 }); //end describe
+
+
+//test to get projects
+describe('GET /projects', () => {
+
+    //test to return 200 response
+    it('should return a 200 response', (done) => {
+        api.get('/projects')
+        .set('Accept', 'application.json')
+        .expect(200,done);
+    }); //end it
+
+    //expect response to return a list of projects, each with name and field
+    it('should return an array of projects, each element with name and link', (done) => {
+        api.get('/projects')
+        .set('Accept', 'application.json')
+        .end((end, response) => {
+            expect(util.isArray(response.body.projects)).to.be.true;
+            expect(response.body.projects[0]).to.have.property('name');
+            expect(response.body.projects[0]).to.have.property('link');
+            done();
+        }); //end api.end
+    }); //end it
+
+}); //end describe
