@@ -143,3 +143,27 @@ describe('GET /projects/:id', () => {
     }); //end it
 
 }); //end describe
+
+//test to get skills
+describe('GET /skills', () => {
+
+    //test to return 200 response
+    it('should return a 200 response', (done) => {
+        api.get('/skills')
+        .set('Accept', 'application.json')
+        .expect(200,done);
+    }); //end it
+
+    //expect response to return a list of skills, each with name and score
+    it('should return an array of skills, each element with name and score', (done) => {
+        api.get('/skills')
+        .set('Accept', 'application.json')
+        .end((end, response) => {
+            expect(util.isArray(response.body.skills)).to.be.true;
+            expect(response.body.skills[0]).to.have.property('name');
+            expect(response.body.skills[0]).to.have.property('score');
+            done();
+        }); //end api.end
+    }); //end it
+
+}); //end describe

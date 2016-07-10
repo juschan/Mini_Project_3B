@@ -19,6 +19,16 @@ var projects = [
     heroku_link: "https://afternoon-savannah-34323.herokuapp.com/"} 
 ];
 
+var skills = [
+  { name: "Javascript", score: 5 }, 
+  { name: "HTML", score: 4 }, 
+  { name: "CSS", score: 4 }, 
+  { name: "Ruby on Rails", score: 4 },
+  { name: "SQL", score: 4 },
+  { name: "C", score: 4 } 
+];
+
+
 /* GET / - default */
 router.get('/', function(req, res, next) {
   res.status(200).json({summary});
@@ -49,6 +59,12 @@ router.get('/projects/:id', function(req, res, next) {
   } else {
     res.status(422).json({message: "ID out of range."});
   }
+});
+
+
+/* GET projects */
+router.get('/skills', function(req, res, next) {
+  res.status(200).json( {skills} );
 });
 
 module.exports = router;
