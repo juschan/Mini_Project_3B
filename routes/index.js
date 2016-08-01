@@ -12,14 +12,14 @@ router.get('/', function(req, res, next) {
 
 // GET /summary - shows summary 
 router.get('/all', function(req, res, next) {
-  Oneself.find({}, function(err, oneself) {
+  Oneself.findOne({}, function(err, oneself) {
     res.status(200).json( {oneself})
   });
 });
 
 // GET /summary - shows summary 
 router.get('/summary', function(req, res, next) {
-  Oneself.find({}, function(err, oneself) {
+  Oneself.findOne({}, function(err, oneself) {
     var summary = oneself.summary
     res.status(200).json( {summary})
   });
@@ -28,7 +28,7 @@ router.get('/summary', function(req, res, next) {
 
 // GET /links
 router.get('/links', function(req, res, next) {
-  Oneself.find({}, function(err, oneself) {
+  Oneself.findOne({}, function(err, oneself) {
     var links = oneself.links
     res.status(200).json({links})
   });
@@ -36,7 +36,7 @@ router.get('/links', function(req, res, next) {
 
 // GET projects
 router.get('/projects', function(req, res, next) {
-  Oneself.find({}, function(err, oneself) {
+  Oneself.findOne({}, function(err, oneself) {
     var projects = oneself.projects
     res.status(200).json({projects})
   });
@@ -56,7 +56,7 @@ router.get('/projects/:id', function(req, res, next) {
 
 // GET skills
 router.get('/skills', function(req, res, next) {
-  Oneself.find({}, function(err, oneself) {
+  Oneself.findOne({}, function(err, oneself) {
     var skills = oneself.skills
     res.status(200).json({skills})
   });

@@ -17,8 +17,8 @@ describe('GET /', () => {
     }); //end it
 
     //expect response to return summary with name and tagline
-    xit('should return a summary with name and tagline', (done) => {
-        api.get('/')
+    it('should return a summary with name and tagline', (done) => {
+        api.get('/summary')
         .set('Accept', 'application.json')
         .end((end, response) => {
             expect(response.body.summary).to.have.property('name');
@@ -34,14 +34,14 @@ describe('GET /', () => {
 describe('GET /summary', () => {
 
     //test to return 200 response
-    xit('should return a 200 response', (done) => {
+    it('should return a 200 response', (done) => {
         api.get('/summary')
         .set('Accept', 'application.json')
         .expect(200,done);
     }); //end it
 
     //expect response to return profle statement
-    xit('should return a profile statement', (done) => {
+    it('should return a profile statement', (done) => {
         api.get('/summary')
         .set('Accept', 'application.json')
         .end((end, response) => {
@@ -56,14 +56,14 @@ describe('GET /summary', () => {
 describe('GET /links', () => {
 
     //test to return 200 response
-    xit('should return a 200 response', (done) => {
+    it('should return a 200 response', (done) => {
         api.get('/links')
         .set('Accept', 'application.json')
         .expect(200,done);
     }); //end it
 
     //expect response to return a list of named links
-    xit('should return an array of links, each element having fields name and link', (done) => {
+    it('should return an array of links, each element having fields name and link', (done) => {
         api.get('/links')
         .set('Accept', 'application.json')
         .end((end, response) => {
@@ -73,7 +73,6 @@ describe('GET /links', () => {
             done();
         }); //end api.end
     }); //end it
-
 }); //end describe
 
 
@@ -81,14 +80,14 @@ describe('GET /links', () => {
 describe('GET /projects', () => {
 
     //test to return 200 response
-    xit('should return a 200 response', (done) => {
+    it('should return a 200 response', (done) => {
         api.get('/projects')
         .set('Accept', 'application.json')
         .expect(200,done);
     }); //end it
 
     //expect response to return a list of projects, each with name and field
-    xit('should return an array of projects, each element with name, github link and heroku link', (done) => {
+    it('should return an array of projects, each element with name, github link and heroku link', (done) => {
         api.get('/projects')
         .set('Accept', 'application.json')
         .end((end, response) => {
@@ -148,14 +147,14 @@ describe('GET /projects/:id', () => {
 describe('GET /skills', () => {
 
     //test to return 200 response
-    xit('should return a 200 response', (done) => {
+    it('should return a 200 response', (done) => {
         api.get('/skills')
         .set('Accept', 'application.json')
         .expect(200,done);
     }); //end it
 
     //expect response to return a list of skills, each with name and score
-    xit('should return an array of skills, each element with name and score', (done) => {
+    it('should return an array of skills, each element with name and score', (done) => {
         api.get('/skills')
         .set('Accept', 'application.json')
         .end((end, response) => {
