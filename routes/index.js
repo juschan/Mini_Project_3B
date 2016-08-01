@@ -1,56 +1,33 @@
 var express = require('express');
 var router = express.Router();
+const bodyParser = require('body-parser')
+var Oneself = require('../models/oneself');
+router.use(bodyParser.json())
+router.use(bodyParser.urlencoded({ extended: true }))
 
-var summary = {
-  name: "Justin Chan",
-  tagline: "Software Craftsman",
-  statement: "Crafting elegant solutions"
-};
-
-var links = [
-  { name: "Github Profile", link: "https://github.com/juschan" }, 
-  { name: "Facebook Profile", link: "https://www.facebook.com/justinchanuk"} 
-];
-
-var projects = [
-  { name: "Color Crush", github_link: "https://justchan.github.io/Project_1B", 
-    heroku_link: "https://afternoon-savannah-34323.herokuapp.com/" }, 
-  { name: "Weird Pokemon Wiki", github_link: "https://justchan.github.io/Project_1B", 
-    heroku_link: "https://afternoon-savannah-34323.herokuapp.com/"} 
-];
-
-var skills = [
-  { name: "Javascript", score: 5 }, 
-  { name: "HTML", score: 4 }, 
-  { name: "CSS", score: 4 }, 
-  { name: "Ruby on Rails", score: 4 },
-  { name: "SQL", score: 4 },
-  { name: "C", score: 4 } 
-];
-
-
-/* GET / - default */
+// GET / - default route showing landing page
 router.get('/', function(req, res, next) {
-  res.status(200).json({summary});
+  res.render('../views/index.ejs')
 });
 
-/* GET profile statement */
-router.get('/profile', function(req, res, next) {
-  res.status(200).json( { summary: {statement: summary.statement} });
+
+// GET /summary - shows summary 
+router.get('/summary', function(req, res, next) {
+  res.status(200).json( {summary: "text"});
 });
 
-/* GET links */
+// GET /links
 router.get('/links', function(req, res, next) {
   res.status(200).json( {links} );
 });
 
-/* GET projects */
+// GET projects
 router.get('/projects', function(req, res, next) {
   res.status(200).json( {projects} );
 });
 
 
-/* GET projects/:id */
+// GET projects/:id */
 router.get('/projects/:id', function(req, res, next) {
   var id=parseInt(req.params.id)
   if(id > 0 && id <= projects.length+1) {
@@ -62,9 +39,11 @@ router.get('/projects/:id', function(req, res, next) {
 });
 
 
-/* GET projects */
+// GET skills
 router.get('/skills', function(req, res, next) {
-  res.status(200).json( {skills} );
+  res.status(200).json( {skills});
 });
+
+
 
 module.exports = router;
